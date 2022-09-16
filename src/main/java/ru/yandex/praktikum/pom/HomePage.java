@@ -13,15 +13,42 @@ public class HomePage {
     private SelenideElement accountButton;
     @FindBy(how = How.XPATH, using = ".//button[text()='Войти в аккаунт']")
     private SelenideElement loginButton;
-    @FindBy(how = How.CLASS_NAME, using = "BurgerIngredients_ingredients__list__2A-mT")
-    private ElementsCollection menuIngredients;
-
+    @FindBy (how = How.XPATH, using = ".//div/ul[1]")
+    public SelenideElement burgerBlock;
+    @FindBy (how = How.XPATH, using = ".//div/ul[2]")
+    public SelenideElement sauceBlock;
+    @FindBy (how = How.XPATH, using = ".//div/ul[3]")
+    public SelenideElement fillingBlock;
+    @FindBy (how = How.XPATH, using = ".//span [@class='text text_type_main-default'][text()='Булки']")
+    private SelenideElement bunButton;
+    @FindBy (how = How.XPATH, using = ".//span [@class='text text_type_main-default'][text()='Соусы']")
+    private SelenideElement sauceButton;
+    @FindBy (how = How.XPATH, using = ".//span [@class='text text_type_main-default'][text()='Начинки']")
+    private SelenideElement fillingButton;
     @Step("Click account button")
     public LoginPage clickAccountButton() {
         accountButton.click();
         return page(LoginPage.class);
     }
 
+
+    @Step ("Click bun button")
+    public HomePage bunButtonClick(){
+        bunButton.click();
+        return this;
+    }
+
+    @Step ("Click sauce button")
+    public HomePage sauceButtonClick(){
+        sauceButton.click();
+        return this;
+    }
+
+    @Step ("Click filling button")
+    public HomePage fillingButtonClick(){
+        fillingButton.click();
+        return this;
+    }
     @Step("Click account button, go account page")
     public AccountPage clickAccountButtonGoAccountPage() {
         accountButton.click();
@@ -32,29 +59,5 @@ public class HomePage {
     public LoginPage clickLoginButton() {
         loginButton.click();
         return page(LoginPage.class);
-    }
-
-    @Step("Find last bun ingredient")
-    public boolean findBunIngredient() {
-        SelenideElement bun = menuIngredients.get(0).lastChild();
-        bun.scrollIntoView(true);
-        bun.click();
-        return bun.isDisplayed();
-    }
-
-    @Step("Find last sauce ingredient")
-    public boolean findSauceIngredient() {
-        SelenideElement sauce = menuIngredients.get(1).lastChild();
-        sauce.scrollIntoView(true);
-        sauce.click();
-        return sauce.isDisplayed();
-    }
-
-    @Step("Find last filling ingredient")
-    public boolean findFillingIngredient() {
-        SelenideElement filling = menuIngredients.get(2).lastChild();
-        filling.scrollIntoView(true);
-        filling.click();
-        return filling.isDisplayed();
     }
 }
