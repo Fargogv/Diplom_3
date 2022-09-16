@@ -15,27 +15,41 @@ public class BurgerConstructorTest {
         homePage = open(HomePage.URL, HomePage.class);
     }
 
-    @Test
-    @DisplayName("Navigate to last bun ingredient")
-    public void navigateToBunIngredient() {
-        boolean isDisplayed = homePage.findBunIngredient();
 
-        assertTrue(isDisplayed);
+    @Test
+    @DisplayName("Проверка что есть скролл к элементу конструктора 'Начинки'. Блок 'Начинки' отображается.")
+    public void scrollWithFillingElementTest() {
+
+        homePage
+                .fillingButtonClick();
+
+        boolean blockVisible = homePage.fillingBlock.isDisplayed();
+
+        assertTrue("Block is invisible", blockVisible);
     }
 
     @Test
-    @DisplayName("Navigate to last sauce ingredient")
-    public void navigateToSauceIngredient() {
-        boolean isDisplayed = homePage.findSauceIngredient();
+    @DisplayName("Проверка что есть скролл к элементу конструктора 'Булки'. Блок 'Булки' отображается.")
+    public void scrollWithBurgerElementTest() {
 
-        assertTrue(isDisplayed);
+        homePage
+                .fillingButtonClick()
+                .bunButtonClick();
+
+        boolean blockVisible = homePage.burgerBlock.isDisplayed();
+
+        assertTrue("Block is invisible", blockVisible);
     }
 
     @Test
-    @DisplayName("Navigate to last filling ingredient")
-    public void navigateToFillingIngredient() {
-        boolean isDisplayed = homePage.findFillingIngredient();
+    @DisplayName("Проверка что есть скролл к элементу конструктора 'Соусы'. Блок 'Соусы' отображается.")
+    public void scrollWithSauceElementTest() {
 
-        assertTrue(isDisplayed);
+        homePage
+                .sauceButtonClick();
+
+        boolean blockVisible = homePage.sauceBlock.isDisplayed();
+
+        assertTrue("Block is invisible", blockVisible);
     }
 }
