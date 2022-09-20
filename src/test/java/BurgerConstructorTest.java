@@ -3,12 +3,17 @@ import org.junit.Before;
 import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import ru.yandex.praktikum.pom.HomePage;
-import static com.codeborne.selenide.Selenide.open;
-import static org.junit.Assert.*;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.*;
+
+
 
 @Epic("Navigate burger constructor")
 public class BurgerConstructorTest {
     private HomePage homePage;
+    private final static String BUNS = "Булки";
+    private final static String SAUCES = "Соусы";
+    private final static String FILLINGS = "Начинки";
 
     @Before
     public void setUp() {
@@ -17,39 +22,25 @@ public class BurgerConstructorTest {
 
 
     @Test
-    @DisplayName("Проверка что есть скролл к элементу конструктора 'Начинки'. Блок 'Начинки' отображается.")
-    public void scrollWithFillingElementTest() {
-
-        homePage
-                .fillingButtonClick();
-
-        boolean blockVisible = homePage.fillingBlock.isDisplayed();
-
-        assertTrue("Block is invisible", blockVisible);
+    @DisplayName("Переход к разделу булки")
+    public void openBuns() {
+        homePage.sauceButtonClick();
+        homePage.bunButtonClick();
+        homePage.compareText(BUNS);
     }
 
     @Test
-    @DisplayName("Проверка что есть скролл к элементу конструктора 'Булки'. Блок 'Булки' отображается.")
-    public void scrollWithBurgerElementTest() {
-
-        homePage
-                .fillingButtonClick()
-                .bunButtonClick();
-
-        boolean blockVisible = homePage.burgerBlock.isDisplayed();
-
-        assertTrue("Block is invisible", blockVisible);
+    @DisplayName("Переход к разделу соусы")
+    public void openSauces() {
+        homePage.sauceButtonClick();
+        homePage.compareText(SAUCES);
     }
 
     @Test
-    @DisplayName("Проверка что есть скролл к элементу конструктора 'Соусы'. Блок 'Соусы' отображается.")
-    public void scrollWithSauceElementTest() {
-
-        homePage
-                .sauceButtonClick();
-
-        boolean blockVisible = homePage.sauceBlock.isDisplayed();
-
-        assertTrue("Block is invisible", blockVisible);
+    @DisplayName("Переход к разделу начинки")
+    public void openFillings() {
+        homePage.fillingButtonClick();
+        homePage.compareText(FILLINGS);
     }
 }
+
