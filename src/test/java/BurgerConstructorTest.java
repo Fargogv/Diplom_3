@@ -4,7 +4,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import ru.yandex.praktikum.pom.HomePage;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Condition.*;
+
 
 
 
@@ -12,8 +12,8 @@ import static com.codeborne.selenide.Condition.*;
 public class BurgerConstructorTest {
     private HomePage homePage;
     private final static String BUNS = "Булки";
-    private final static String SAUCES = "Соусы";
-    private final static String FILLINGS = "Начинки";
+    private final static String SAUCE = "Соусы";
+    private final static String FILLING = "Начинки";
 
     @Before
     public void setUp() {
@@ -22,7 +22,7 @@ public class BurgerConstructorTest {
 
 
     @Test
-    @DisplayName("Переход к разделу булки")
+    @DisplayName("Open the buns section")
     public void openBuns() {
         homePage.sauceButtonClick();
         homePage.bunButtonClick();
@@ -30,17 +30,17 @@ public class BurgerConstructorTest {
     }
 
     @Test
-    @DisplayName("Переход к разделу соусы")
+    @DisplayName("Open the sauces section")
     public void openSauces() {
         homePage.sauceButtonClick();
-        homePage.compareText(SAUCES);
+        homePage.compareText(SAUCE);
     }
 
     @Test
-    @DisplayName("Переход к разделу начинки")
+    @DisplayName("Open the filling section")
     public void openFillings() {
         homePage.fillingButtonClick();
-        homePage.compareText(FILLINGS);
+        homePage.compareText(FILLING);
     }
 }
 
